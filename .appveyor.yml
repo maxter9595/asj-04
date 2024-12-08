@@ -1,0 +1,32 @@
+# Настройка образа
+image: Ubuntu1804
+
+# Настройка окружения
+stack: node 12
+
+# Настройка веток
+branches:
+  only:
+    - main
+
+# Кэширование node_modules
+cache: node_modules
+
+# Установочные шаги
+install:
+  - npm install
+
+# Отключение шагов сборки, так как они не нужны
+build: off
+
+# Настройка скрипта тестирования
+test_script:
+  - npm run lint && npm test
+
+# Добавление переменных окружения для токена GitHub
+environment:
+  GITHUB_TOKEN: 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
+
+# Пример использования токена для клонирования репозитория
+before_install:
+  - git clone https://$GITHUB_TOKEN@github.com/maxter9595/asj-04.git
